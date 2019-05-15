@@ -1,8 +1,8 @@
 kind: pipeline
-name: unittest
+name: default
 
 steps:
-  - name: unittest
+  - name: test
     image: golang:1.12-alpine
     environment:
       GOOS: linux
@@ -13,11 +13,6 @@ steps:
       - go get -u ./...
       - go test -v ./...
 
----
-kind: pipeline
-name: build
-
-steps:
   - name: build
     image: plugins/docker
     settings:
