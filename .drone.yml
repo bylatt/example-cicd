@@ -4,6 +4,10 @@ name: default
 steps:
   - name: unittest
     image: golang:1.12-alpine
+    environment:
+        GOOS: linux
+        GOARCH: amd64
+        CGO_ENABLED: 0
     commands:
       - apk add --update git
       - go get -u ./...
