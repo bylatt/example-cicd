@@ -2,6 +2,7 @@ version: "3.5"
 services:
   web:
     build: .
+    dockerfile: Dockerfile.dev
     volumes:
       - ./:/go/src/github.com/clozed2u/example-cicd
     environment:
