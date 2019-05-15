@@ -44,3 +44,18 @@ func TestRepoFind(t *testing.T) {
 		t.Errorf("Want %+v but got %+v\n", want, got)
 	}
 }
+
+func TestRepoCreate(t *testing.T) {
+	r := NewRepo(MockAdapter{})
+	b := Book{
+		ID:          "id",
+		Title:       "title",
+		Description: "description",
+		ImageURL:    "image_url",
+		Author:      "author",
+	}
+	err := r.Create(b)
+	if err != nil {
+		t.Errorf("Failed to create book")
+	}
+}
