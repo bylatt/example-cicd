@@ -1,0 +1,10 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: unittest
+    image: golang:1.13-alpine
+    commands:
+      - apk add --update git
+      - go get -u ./...
+      - go test -v ./...

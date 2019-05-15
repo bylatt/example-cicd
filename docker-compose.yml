@@ -1,0 +1,36 @@
+version: "3.5"
+services:
+  web:
+    build: .
+    volumes:
+      - ./:/go/src/github.com/clozed2u/example-cicd
+    environment:
+      - REDISENDPOINT=redis
+      - REDISPORT=6379
+      - REDISDB=0
+    ports:
+      - "8000:8000"
+    networks:
+      - wisesight
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+    restart: "always"
+
+  redis:
+    image: redis:5-alpine
+    networks:
+      - wisesight
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+    restart: "always"
+
+networks:
+  wisesight:
+    name: ze_local
+    driver: bridge
